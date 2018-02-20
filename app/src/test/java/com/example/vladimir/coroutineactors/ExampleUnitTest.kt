@@ -19,24 +19,9 @@ class ExampleUnitTest {
 
     @Test
     fun actorTest() {
-        val counter = counterActor()
-        val v = counter.sendBlocking("some")
-        println(v.toString())
+
     }
 
-    fun counterActor() = actor<Any>(CommonPool) { //(1)
-        var counter = 0 //(9) actor state, not shared
-        for (msg in channel) { // handle incoming messages
-            when (msg) {
-                is String -> Log.d("Coroutine", "string") //(4)
-                is Int -> {
-                    Log.d("Coroutine", "int")//(3)
-//                    coroutineContext.
-
-                }
-            }
-        }
-    }
     @Test
     fun addition_isCorrect() {
         assertEquals(4, 2 + 2)
