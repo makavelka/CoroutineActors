@@ -21,6 +21,8 @@ class ExampleUnitTest {
         val mock = mock(Calculator::class.java)
         `when`(mock.multipleX10(10)).thenReturn(100)
         val multipleActor = ActorSystem.createActor(ActorSystem.TypeActors.MULTIPLE_ACTOR)
+        multipleActor?.sendBlocking("some string")
+        verify(mock, never()).multipleX10(10)
         multipleActor?.sendBlocking(10)
         Mockito.verify(mock, times(1))
     }
