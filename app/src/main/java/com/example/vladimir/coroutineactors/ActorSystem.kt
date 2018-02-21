@@ -2,6 +2,7 @@ package com.example.vladimir.coroutineactors
 
 import android.content.Context
 import android.widget.Toast
+import com.example.vladimir.coroutineactors.presentation.Calculator
 import com.example.vladimir.coroutineactors.presentation.UiDispatcher
 import kotlinx.coroutines.experimental.CommonPool
 import kotlinx.coroutines.experimental.Job
@@ -22,13 +23,15 @@ object ActorSystem {
         return null
     }
 
-
     private fun multiplyActor() = actor<Any>(CommonPool) {
         for (msg in channel) {
             when (msg) {
                 is Int -> {
                     print("koroutine ")
-                    println(msg*10)
+                    println(Calculator().multipleX10(msg))
+                }
+                else -> {
+                    print("Unknown")
                 }
             }
         }

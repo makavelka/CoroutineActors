@@ -1,14 +1,13 @@
 package com.example.vladimir.coroutineactors
 
-import android.util.Log
-import kotlinx.coroutines.experimental.CommonPool
-import kotlinx.coroutines.experimental.channels.actor
+import com.example.vladimir.coroutineactors.presentation.Calculator
 import kotlinx.coroutines.experimental.channels.sendBlocking
-import kotlinx.coroutines.experimental.launch
-import kotlinx.coroutines.experimental.runBlocking
 import org.junit.Test
 
 import org.junit.Assert.*
+import org.mockito.Mock
+import org.mockito.Mockito
+import org.mockito.Mockito.*
 
 /**
  * Example local unit test, which will execute on the development machine (host).
@@ -19,7 +18,11 @@ class ExampleUnitTest {
 
     @Test
     fun actorTest() {
-
+        val mock = mock(Calculator::class.java)
+        `when`(mock.multipleX10(10)).thenReturn(100)
+        val multipleActor = ActorSystem.createActor(ActorSystem.TypeActors.MULTIPLE_ACTOR)
+        multipleActor?.sendBlocking(10)
+        Mockito.verify(mock, times(1))
     }
 
     @Test

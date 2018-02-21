@@ -30,7 +30,7 @@ class MainActivity : AppCompatActivity(), MainView {
 
     private fun uiActor(context: Context) = actor <Int>(UiDispatcher) {
         for (msg in channel) {
-
+            showResult(msg)
         }
     }
 }
